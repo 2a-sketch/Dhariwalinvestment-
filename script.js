@@ -767,15 +767,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const messageOk = validateField(fields.message, fields.message.value.trim().length >= 10);
 
             if (nameOk && phoneOk && emailOk && serviceOk && messageOk) {
-                const nameText = encodeURIComponent(fields.name.value.trim());
-                const phoneText = encodeURIComponent(fields.phone.value.trim());
-                const emailText = encodeURIComponent(fields.email.value.trim());
-                const serviceText = encodeURIComponent(fields.service.options[fields.service.selectedIndex].text);
-                const messageText = encodeURIComponent(fields.message.value.trim());
-
-                const waMessage = `*New Consultation Request*%0A%0A*Name:* ${nameText}%0A*Phone:* ${phoneText}%0A*Email:* ${emailText}%0A*Interested In:* ${serviceText}%0A%0A*Message:*%0A${messageText}`;
-                const targetPhone = '919828051556';
-                const waUrl = `https://wa.me/${targetPhone}?text=${waMessage}`;
+                const rawMessage = `*New Consultation Request*\n\n*Name:* ${fields.name.value.trim()}\n*Phone:* ${fields.phone.value.trim()}\n*Email:* ${fields.email.value.trim()}\n*Interested In:* ${fields.service.options[fields.service.selectedIndex].text}\n\n*Message:*\n${fields.message.value.trim()}`;
+                const waUrl = `https://wa.me/919828051556?text=${encodeURIComponent(rawMessage)}`;
 
                 // Try window.open first (works in direct event handlers on both desktop & mobile)
                 const newWin = window.open(waUrl, '_blank');
