@@ -1,2357 +1,610 @@
-/* ========================================
-   DHARIWAL INVESTMENTS — DESIGN SYSTEM
-   Premium Fintech Landing Page
-   ======================================== */
-
-/* --- CSS Custom Properties --- */
-:root {
-    /* Colors */
-    --bg-primary: #0a1628;
-    --bg-secondary: #0f1f3d;
-    --bg-card: rgba(15, 31, 61, 0.6);
-    --bg-card-hover: rgba(20, 40, 80, 0.8);
-    --bg-glass: rgba(255, 255, 255, 0.04);
-    --bg-glass-border: rgba(255, 255, 255, 0.08);
-
-    --text-primary: #ffffff;
-    --text-secondary: rgba(255, 255, 255, 0.7);
-    --text-muted: rgba(255, 255, 255, 0.45);
-
-    --accent-blue: #2563eb;
-    --accent-blue-light: #3b82f6;
-    --accent-gold: #f59e0b;
-    --accent-gold-light: #fbbf24;
-    --accent-green: #10b981;
-
-    --gradient-primary: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
-    --gradient-gold: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
-    --gradient-text: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f59e0b 100%);
-
-    /* Typography */
-    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --fs-hero: clamp(2.5rem, 5.5vw, 4.5rem);
-    --fs-h2: clamp(1.8rem, 3.5vw, 2.8rem);
-    --fs-h3: 1.25rem;
-    --fs-body: 1rem;
-    --fs-small: 0.875rem;
-    --fs-xs: 0.75rem;
-
-    /* Spacing */
-    --section-py: clamp(5rem, 10vw, 7.5rem);
-    --container-max: 1440px;
-    --container-px: clamp(1rem, 2vw, 1.5rem);
-
-    /* Borders & Radius */
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 20px;
-    --radius-xl: 28px;
-    --radius-full: 9999px;
-
-    /* Shadows */
-    --shadow-card: 0 4px 30px rgba(0, 0, 0, 0.3);
-    --shadow-glow: 0 0 40px rgba(37, 99, 235, 0.15);
-    --shadow-gold-glow: 0 0 30px rgba(245, 158, 11, 0.2);
-
-    /* Transitions */
-    --transition-fast: 0.2s ease;
-    --transition-base: 0.3s ease;
-    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* --- Reset & Base --- */
-*,
-*::before,
-*::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html, body {
-    overflow-x: hidden;
-    max-width: 100%;
-}
-
-html {
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-    font-family: var(--font-family);
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    line-height: 1.6;
-}
-
-img {
-    max-width: 100%;
-    display: block;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-ul {
-    list-style: none;
-}
-
-.container {
-    width: 100%;
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 var(--container-px);
-}
-
-/* --- Scroll Reveal Animations --- */
-.reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.reveal.revealed {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* --- Buttons --- */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.9rem 2rem;
-    font-family: var(--font-family);
-    font-size: var(--fs-body);
-    font-weight: 600;
-    border-radius: var(--radius-full);
-    border: none;
-    cursor: pointer;
-    transition: all var(--transition-base);
-    position: relative;
-    overflow: hidden;
-    min-height: 48px; /* Touch target */
-}
-
-.btn-primary {
-    background: var(--gradient-primary);
-    color: var(--text-primary);
-    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(37, 99, 235, 0.45);
-}
-
-.btn-outline {
-    background: transparent;
-    color: var(--text-primary);
-    border: 1.5px solid rgba(255, 255, 255, 0.2);
-}
-
-.btn-outline:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: translateY(-2px);
-}
-
-.btn-full {
-    width: 100%;
-    justify-content: center;
-}
-
-/* --- Section Shared Styles --- */
-.section-header {
-    text-align: center;
-    margin-bottom: 3.5rem;
-}
-
-.section-tag {
-    display: inline-block;
-    font-size: var(--fs-xs);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2.5px;
-    color: var(--accent-blue-light);
-    background: rgba(37, 99, 235, 0.1);
-    border: 1px solid rgba(37, 99, 235, 0.2);
-    padding: 0.4rem 1.2rem;
-    border-radius: var(--radius-full);
-    margin-bottom: 1rem;
-}
-
-.section-title {
-    font-size: var(--fs-h2);
-    font-weight: 800;
-    line-height: 1.2;
-    margin-bottom: 1rem;
-}
-
-.section-desc {
-    font-size: 1.05rem;
-    color: var(--text-secondary);
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.7;
-}
-
-.gradient-text {
-    background: var(--gradient-text);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-/* ========================================
-   NAVBAR
-   ======================================== */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    padding: 1rem 0;
-    transition: all var(--transition-base);
-    background: rgba(7, 42, 102, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
-
-.navbar.scrolled {
-    padding: 0.6rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    font-weight: 700;
-    font-size: 1.3rem;
-    z-index: 1001;
-}
-
-.logo-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 75px;
-    height: 75px;
-}
-
-.logo-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-/* Hero Logo (mobile only - hidden on desktop) */
-.hero-logo-mobile {
-    display: none;
-}
-
-.logo-text {
-    font-weight: 700;
-}
-
-.logo-highlight {
-    color: var(--accent-gold);
-}
-
-.nav-links {
-    display: flex;
-    gap: 2rem;
-}
-
-.nav-links a {
-    font-size: var(--fs-small);
-    font-weight: 500;
-    color: var(--text-secondary);
-    transition: color var(--transition-fast);
-    position: relative;
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--gradient-primary);
-    border-radius: 2px;
-    transition: width var(--transition-base);
-}
-
-.nav-links a:hover {
-    color: var(--text-primary);
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-.nav-cta {
-    font-size: var(--fs-small);
-    font-weight: 600;
-    padding: 0.6rem 1.5rem;
-    background: var(--gradient-primary);
-    border-radius: var(--radius-full);
-    transition: all var(--transition-base);
-    box-shadow: 0 2px 15px rgba(37, 99, 235, 0.25);
-}
-
-.nav-cta:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 25px rgba(37, 99, 235, 0.4);
-}
-
-.hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 10000;
-    padding: 5px;
-}
-
-.hamburger span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: var(--text-primary);
-    border-radius: 2px;
-    transition: all var(--transition-base);
-}
-
-.hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* ========================================
-   HERO
-   ======================================== */
-.hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    padding: 11rem 0 4rem;
-    background: linear-gradient(160deg, #0B3D91 0%, #072A66 100%);
-}
-
-.hero-bg-overlay {
-    position: absolute;
-    inset: 0;
-    background-image: url('assets/hero-bg.png');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.3;
-}
-
-.hero-bg-overlay::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg,
-        rgba(7, 42, 102, 0.3) 0%,
-        rgba(7, 42, 102, 0.6) 50%,
-        #072A66 100%);
-}
-
-.hero-particles {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-}
-
-/* --- Split Layout --- */
-.hero-split {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: 1fr 1.25fr;
-    gap: 1.5rem;
-    align-items: center;
-}
-
-.hero-left {
-    max-width: 640px;
-}
-
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: var(--fs-xs);
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: #F4C542;
-    background: rgba(212, 175, 55, 0.1);
-    border: 1px solid rgba(212, 175, 55, 0.25);
-    padding: 0.5rem 1.3rem;
-    border-radius: var(--radius-full);
-    margin-bottom: 1.5rem;
-}
-
-.hero-title {
-    font-size: var(--fs-hero);
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 1.2rem;
-    letter-spacing: -1px;
-    color: #FFFFFF;
-}
-
-.hero-title .gradient-text {
-    background: linear-gradient(135deg, #F4C542 0%, #D4AF37 50%, #F4C542 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.hero-subtitle {
-    font-size: 1.15rem;
-    color: #E6EAF2;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-}
-
-/* --- Trust Indicators --- */
-.hero-trust-indicators {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.trust-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: var(--fs-small);
-    font-weight: 500;
-    color: #E6EAF2;
-}
-
-.trust-item i {
-    color: #F4C542;
-    font-size: 1rem;
-}
-
-/* --- CTAs --- */
-.hero-ctas {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-/* Hero primary CTA — gold gradient */
-.hero .btn-primary {
-    background: linear-gradient(135deg, #D4AF37 0%, #F4C542 100%);
-    color: #072A66;
-    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
-}
-
-.hero .btn-primary:hover {
-    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.55);
-}
-
-/* Hero secondary CTA — white outline */
-.btn-whatsapp {
-    background: transparent;
-    color: #FFFFFF;
-    border: 1.5px solid rgba(255, 255, 255, 0.4);
-    box-shadow: none;
-}
-
-.btn-whatsapp:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.7);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
-}
-
-/* --- Right: Premium Fintech Animation --- */
-.hero-right {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 100%;
-    align-self: stretch; /* Fill full grid row height */
-}
-
-.fintech-visual {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    min-height: 620px;
-    background: transparent;
-    border-radius: var(--radius-xl);
-    overflow: visible;
-    opacity: 0; /* GSAP sets to 1 */
-}
-
-/* Base SVG fills the container exactly */
-.fintech-bg-svg {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-/* Floating Elements Layer (HTML overlay on top of SVG) */
-#floating-elements-layer {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 2;
-}
-
-/* Data Nodes appearing on curve */
-.curve-node {
-    fill: #0F172A;
-    stroke: var(--accent-gold);
-    stroke-width: 3px;
-    transition: all 0.3s ease;
-}
-
-.curve-node:hover {
-    fill: var(--accent-gold);
-    cursor: pointer;
-}
-
-/* Custom Badges (Compounding / Secure) */
-.fintech-badge {
-    position: absolute;
-    background: rgba(7, 42, 102, 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    border-radius: var(--radius-full);
-    padding: 0.6rem 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    color: var(--text-primary);
-    font-size: var(--fs-small);
-    font-weight: 600;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    opacity: 0; /* Handled by GSAP */
-    pointer-events: auto;
-    z-index: 5;
-}
-
-#badge-insight {
-    top: 60px;
-    left: 40px;
-}
-
-#badge-secure {
-    bottom: 60px;
-    right: 40px;
-}
-
-.fintech-badge i {
-    color: var(--accent-gold);
-    font-size: 1rem;
-}
-
-/* Floating HTML coins (generated by JS) */
-.fintech-coin {
-    position: absolute;
-    width: 32px;
-    height: 32px;
-    background: linear-gradient(135deg, #D4AF37, #FDB931);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
-    color: #072A66;
-    font-size: 0.9rem;
-    font-weight: 800;
-    pointer-events: none;
-    opacity: 0;
-}
-
-/* --- Scroll Indicator --- */
-.hero-scroll-indicator {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--text-muted);
-    font-size: var(--fs-xs);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    animation: float 2s ease-in-out infinite;
-}
-
-.scroll-line {
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, var(--accent-blue), transparent);
-}
-
-@keyframes float {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(8px); }
-}
-
-
-/* ========================================
-   ACHIEVEMENTS
-   ======================================== */
-.achievements {
-    padding: var(--section-py) 0;
-    background: #F5F7FA;
-    position: relative;
-}
-
-.achievements-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-}
-
-/* --- Achievement Image --- */
-.achievements-image {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.achievement-carousel {
-    position: relative;
-    width: 100%;
-    max-width: 540px;
-    aspect-ratio: 4 / 3;
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-    z-index: 1;
-    box-shadow: 0 15px 60px rgba(0, 0, 0, 0.18);
-}
-
-.achievement-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: var(--radius-xl);
-    opacity: 0;
-    transition: opacity 0.8s ease;
-}
-
-.achievement-img.active {
-    opacity: 1;
-}
-
-.achievement-carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    z-index: 2;
-    position: relative;
-}
-
-.ach-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #c8d0dc;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.ach-dot.active {
-    background: #D4AF37;
-    box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
-    transform: scale(1.2);
-}
-
-.achievement-img-glow {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
-    border-radius: 50%;
-    z-index: 0;
-    animation: floatSlow 6s ease-in-out infinite;
-}
-
-.achievement-badge-float {
-    position: absolute;
-    bottom: 20px;
-    right: 0;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: linear-gradient(135deg, #D4AF37, #F4C542);
-    color: #072A66;
-    font-size: var(--fs-small);
-    font-weight: 700;
-    padding: 0.6rem 1.2rem;
-    border-radius: var(--radius-full);
-    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
-    animation: floatMedium 5s ease-in-out infinite;
-}
-
-.achievement-badge-float i {
-    font-size: 1rem;
-}
-
-/* --- Section Header Overrides --- */
-.achievements .section-tag {
-    color: #0B3D91;
-    background: rgba(11, 61, 145, 0.08);
-    border-color: rgba(11, 61, 145, 0.15);
-}
-
-.achievements .section-title {
-    color: #0B3D91;
-    text-align: left;
-}
-
-.achievements .section-title .gradient-text {
-    background: linear-gradient(135deg, #D4AF37, #F4C542);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.achievements .section-desc {
-    color: #5a6a80;
-    text-align: left;
-    max-width: 100%;
-}
-
-.achievements .section-header {
-    text-align: left;
-    margin-bottom: 2rem;
-}
-
-/* --- Stats Grid --- */
-.achievements-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.2rem;
-}
-
-.achievement-stat {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    background: #FFFFFF;
-    border: 1px solid #e8ecf2;
-    border-radius: var(--radius-lg);
-    padding: 1.3rem 1.5rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-    transition: all var(--transition-slow);
-}
-
-.achievement-stat:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
-    border-color: rgba(212, 175, 55, 0.25);
-}
-
-.achievement-icon {
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #D4AF37, #F4C542);
-    border-radius: var(--radius-md);
-    color: #FFFFFF;
-    font-size: 1.1rem;
-    box-shadow: 0 3px 12px rgba(212, 175, 55, 0.25);
-}
-
-.achievement-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.achievement-info .stat-row {
-    display: flex;
-    align-items: baseline;
-}
-
-.achievement-info .stat-number {
-    font-size: 1.6rem;
-    font-weight: 900;
-    color: #0B3D91;
-    line-height: 1;
-}
-
-.achievement-info .stat-suffix {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: #D4AF37;
-}
-
-.achievement-info .stat-label {
-    font-size: var(--fs-xs);
-    color: #5a6a80;
-    margin-top: 0.2rem;
-    font-weight: 600;
-}
-
-/* --- Trust Banner --- */
-.trust-banner {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    margin-top: 1.5rem;
-    padding: 1rem 1.5rem;
-    background: linear-gradient(135deg, rgba(11, 61, 145, 0.06), rgba(212, 175, 55, 0.06));
-    border: 1px solid rgba(11, 61, 145, 0.1);
-    border-radius: var(--radius-full);
-}
-
-.trust-banner i {
-    font-size: 1.3rem;
-    color: #D4AF37;
-}
-
-.trust-banner span {
-    font-size: var(--fs-small);
-    font-weight: 600;
-    color: #0B3D91;
-}
-
-/* ========================================
-   SERVICES
-   ======================================== */
-.services {
-    padding: var(--section-py) 0;
-    background: #FFFFFF;
-    position: relative;
-}
-
-.services::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(11, 61, 145, 0.03) 0%, transparent 70%);
-    transform: translateX(-50%);
-    pointer-events: none;
-}
-
-/* Override text colors for white background */
-.services .section-tag {
-    color: #0B3D91;
-    background: rgba(11, 61, 145, 0.08);
-    border-color: rgba(11, 61, 145, 0.15);
-}
-
-.services .section-title {
-    color: #0B3D91;
-}
-
-.services .section-title .gradient-text {
-    background: linear-gradient(135deg, #D4AF37 0%, #F4C542 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.services .section-desc {
-    color: #5a6a80;
-}
-
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-}
-
-.service-card {
-    background: #FFFFFF;
-    border: 1px solid #e8ecf2;
-    border-radius: var(--radius-lg);
-    padding: 2.2rem;
-    transition: all var(--transition-slow);
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-}
-
-.service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #D4AF37, #F4C542);
-    transform: scaleX(1);
-    transform-origin: left;
-}
-
-.service-card:hover {
-    background: #F5F7FA;
-    border-color: #d0d8e4;
-    transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-}
-
-.service-card:hover::before {
-    transform: scaleX(1);
-}
-
-.service-icon {
-    width: 56px;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(11, 61, 145, 0.08);
-    border: 1px solid rgba(11, 61, 145, 0.1);
-    border-radius: var(--radius-md);
-    font-size: 1.4rem;
-    color: #0B3D91;
-    margin-bottom: 1.3rem;
-    transition: all var(--transition-base);
-}
-
-.service-card:hover .service-icon {
-    background: #0B3D91;
-    color: white;
-    border-color: transparent;
-    box-shadow: 0 4px 15px rgba(11, 61, 145, 0.25);
-}
-
-.service-card h3 {
-    font-size: var(--fs-h3);
-    font-weight: 700;
-    margin-bottom: 0.7rem;
-    color: #1a2a3d;
-}
-
-.service-card p {
-    font-size: var(--fs-small);
-    color: #5a6a80;
-    line-height: 1.7;
-    margin-bottom: 1.3rem;
-}
-
-.service-link {
-    font-size: var(--fs-small);
-    font-weight: 600;
-    color: #0B3D91;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    transition: all var(--transition-fast);
-}
-
-.service-link i {
-    font-size: 0.7rem;
-    transition: transform var(--transition-fast);
-}
-
-.service-link:hover {
-    color: #D4AF37;
-}
-
-.service-link:hover i {
-    transform: translateX(4px);
-}
-
-/* ========================================
-   WHY CHOOSE US
-   ======================================== */
-.why-us {
-    padding: var(--section-py) 0;
-    background: #FFFFFF;
-    position: relative;
-}
-
-/* Override text colors for white background */
-.why-us .section-tag {
-    color: #0B3D91;
-    background: rgba(11, 61, 145, 0.08);
-    border-color: rgba(11, 61, 145, 0.15);
-}
-
-.why-us .section-title {
-    color: #0B3D91;
-}
-
-.why-us .section-title .gradient-text {
-    background: linear-gradient(135deg, #D4AF37 0%, #F4C542 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.why-us .section-desc {
-    color: #5a6a80;
-}
-
-.why-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-}
-
-.why-card {
-    text-align: center;
-    padding: 2.5rem 1.8rem;
-    background: #FFFFFF;
-    border: 1px solid #e8ecf2;
-    border-radius: var(--radius-lg);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-    transition: all var(--transition-slow);
-}
-
-.why-card:hover {
-    background: #FAFBFD;
-    border-color: rgba(212, 175, 55, 0.3);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-}
-
-.why-icon {
-    width: 64px;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #D4AF37, #F4C542);
-    border-radius: 50%;
-    font-size: 1.5rem;
-    color: #FFFFFF;
-    margin: 0 auto 1.3rem;
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.why-icon i {
-    animation: icon-float 3s ease-in-out infinite;
-}
-
-.why-card:hover .why-icon {
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
-}
-
-.why-card:hover .why-icon i {
-    animation-play-state: paused;
-}
-
-@keyframes icon-float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-3px); }
-}
-
-.why-card h3 {
-    font-size: var(--fs-h3);
-    font-weight: 700;
-    margin-bottom: 0.6rem;
-    color: #0B3D91;
-}
-
-.why-card p {
-    font-size: var(--fs-small);
-    color: #5a6a80;
-    line-height: 1.7;
-}
-
-/* ========================================
-   TESTIMONIALS
-   ======================================== */
-.testimonials {
-    padding: var(--section-py) 0;
-    background: #F5F7FA;
-    overflow: hidden;
-}
-
-/* Override text colors for light background */
-.testimonials .section-tag {
-    color: #0B3D91;
-    background: rgba(11, 61, 145, 0.08);
-    border-color: rgba(11, 61, 145, 0.15);
-}
-
-.testimonials .section-title {
-    color: #0B3D91;
-}
-
-.testimonials .section-title .gradient-text {
-    background: linear-gradient(135deg, #D4AF37 0%, #F4C542 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.testimonials .section-desc {
-    color: #5a6a80;
-}
-
-.testimonials-wrapper {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 3rem;
-    align-items: center;
-}
-
-.testimonial-carousel-side {
-    min-width: 0;
-}
-
-.testimonial-carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
-
-.testimonial-track {
-    display: flex;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.testimonial-card {
-    min-width: 100%;
-    padding: 2.5rem;
-    background: #FFFFFF;
-    border: 1px solid #e8ecf2;
-    border-radius: var(--radius-lg);
-    margin: 0;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-}
-
-.testimonial-stars {
-    display: flex;
-    gap: 0.25rem;
-    color: #D4AF37;
-    font-size: 0.9rem;
-    margin-bottom: 1.2rem;
-}
-
-.testimonial-text {
-    font-size: 1.05rem;
-    color: #4a5568;
-    line-height: 1.8;
-    font-style: italic;
-    margin-bottom: 1.5rem;
-}
-
-.testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.author-avatar {
-    width: 48px;
-    height: 48px;
-    background: linear-gradient(135deg, #0B3D91, #072A66);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    color: #FFFFFF;
-}
-
-.author-name {
-    font-weight: 700;
-    font-size: var(--fs-body);
-    color: #0B3D91;
-}
-
-.author-role {
-    font-size: var(--fs-small);
-    color: #7a8a9e;
-}
-
-.carousel-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.carousel-btn {
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #FFFFFF;
-    border: 1px solid #d0d8e4;
-    border-radius: 50%;
-    color: #0B3D91;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-}
-
-.carousel-btn:hover {
-    background: #0B3D91;
-    border-color: #0B3D91;
-    color: #FFFFFF;
-}
-
-.carousel-dots {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.carousel-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #c8d0dc;
-    border: none;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-}
-
-.carousel-dot.active {
-    background: #D4AF37;
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
-    transform: scale(1.2);
-}
-
-/* ========================================
-   COMPACT REVIEW FORM (Inside Testimonials)
-   ======================================== */
-.review-form-side {
-    background: #FFFFFF;
-    border: 1px solid #e2e8f0;
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-}
-
-.mini-review-box h3 {
-    font-size: 1.25rem;
-    color: #0B3D91;
-    margin-bottom: 1.2rem;
-    font-weight: 700;
-}
-
-.review-form .form-group {
-    margin-bottom: 0.8rem;
-}
-
-.review-form input, 
-.review-form textarea {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    font-size: 0.9rem;
-    border: 1px solid #d1d5db;
-    border-radius: var(--radius-sm);
-    outline: none;
-    transition: all 0.2s;
-}
-
-.review-form input:focus, 
-.review-form textarea:focus {
-    border-color: #D4AF37;
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
-}
-
-.star-rating {
-    display: flex;
-    gap: 0.4rem;
-    font-size: 1.3rem;
-    color: #cbd5e1;
-    cursor: pointer;
-    margin-bottom: 1rem;
-}
-
-.star-rating i.active,
-.star-rating i:hover,
-.star-rating i.hover {
-    color: #D4AF37;
-}
-
-.star-rating i.fas {
-    color: #D4AF37;
-}
-
-.review-success-msg {
-    margin-top: 1rem;
-    padding: 0.75rem;
-    background: #f0fdf4;
-    border: 1px solid #bbf7d0;
-    color: #166534;
-    border-radius: var(--radius-sm);
-    text-align: center;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-@media (max-width: 1024px) {
-    .testimonials-wrapper {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-    
-    .review-form-side {
-        max-width: 600px;
-        margin: 0 auto;
-        width: 100%;
-    }
-}
-
-/* ========================================
-   CAREER / EMPLOYMENT SECTION
-   ======================================== */
-.section-career {
-    padding: 8rem 0;
-    background: #020C1B;
-    position: relative;
-    overflow: hidden;
-}
-
-.career-split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-}
-
-.career-left {
-    max-width: 600px;
-}
-
-.career-desc {
-    font-size: 1.15rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-    margin-bottom: 2rem;
-}
-
-.career-benefits {
-    list-style: none;
-    margin-bottom: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-}
-
-.career-benefits li {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 1.05rem;
-    font-weight: 500;
-    background: rgba(255, 255, 255, 0.03);
-    padding: 1rem 1.5rem;
-    border-radius: var(--radius-md);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.3s ease;
-}
-
-.career-benefits li:hover {
-    transform: translateX(10px);
-    background: rgba(212, 175, 55, 0.08);
-    border-color: rgba(212, 175, 55, 0.3);
-}
-
-.career-benefits li i {
-    color: var(--accent-gold);
-    font-size: 1.2rem;
-}
-
-.career-ctas {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.career-right {
-    position: relative;
-}
-
-.career-image-wrapper {
-    position: relative;
-    width: 100%;
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-}
-
-.career-img {
-    width: 100%;
-    height: auto;
-    border-radius: var(--radius-lg);
-    display: block;
-    object-fit: cover;
-}
-
-.career-floating-badge {
-    position: absolute;
-    background: rgba(7, 42, 102, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    padding: 0.8rem 1.5rem;
-    border-radius: var(--radius-full);
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    color: #fff;
-    font-weight: 600;
-    font-size: 0.95rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    pointer-events: none;
-}
-
-.career-floating-badge i {
-    color: var(--accent-gold);
-    font-size: 1.1rem;
-}
-
-.career-floating-badge.badge-1 {
-    top: 10%;
-    left: -5%;
-    animation: float 6s ease-in-out infinite;
-}
-
-.career-floating-badge.badge-2 {
-    bottom: 15%;
-    right: -5%;
-    animation: float 5s ease-in-out infinite reverse;
-}
-
-/* ========================================
-   CONTACT / LEAD CAPTURE
-   ======================================== */
-.contact {
-    padding: 5rem 0;
-    background: linear-gradient(160deg, #0B3D91 0%, #072A66 100%);
-    position: relative;
-}
-
-.contact::before {
-    content: '';
-    position: absolute;
-    top: -100px;
-    right: -100px;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
-    pointer-events: none;
-}
-
-/* Override section text colors for dark navy */
-.contact .section-tag {
-    color: #F4C542;
-    background: rgba(244, 197, 66, 0.1);
-    border-color: rgba(244, 197, 66, 0.25);
-}
-
-.contact .section-title {
-    color: #FFFFFF;
-}
-
-.contact .section-title .gradient-text {
-    background: linear-gradient(135deg, #D4AF37 0%, #F4C542 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.contact-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-}
-
-.contact-info .section-tag {
-    margin-bottom: 1rem;
-}
-
-.contact-info .section-title {
-    text-align: left;
-    margin-bottom: 1rem;
-}
-
-.contact-info > p {
-    color: rgba(255, 255, 255, 0.75);
-    line-height: 1.8;
-    margin-bottom: 2rem;
-}
-
-.contact-features {
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-    margin-bottom: 2.5rem;
-}
-
-.contact-feature {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    font-size: var(--fs-small);
-    font-weight: 500;
-    color: #FFFFFF;
-}
-
-.contact-feature i {
-    color: #F4C542;
-    font-size: 1rem;
-}
-
-.contact-direct {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
-.contact-direct-item {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    font-size: var(--fs-small);
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.contact-direct-item i {
-    color: #F4C542;
-    width: 18px;
-    text-align: center;
-}
-
-/* --- Form --- */
-.contact-form {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: var(--radius-xl);
-    padding: 2.5rem;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(12px);
-}
-
-.form-group {
-    margin-bottom: 1.3rem;
-}
-
-.form-group label {
-    display: block;
-    font-size: var(--fs-small);
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: rgba(255, 255, 255, 0.85);
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 0.85rem 1.1rem;
-    font-family: var(--font-family);
-    font-size: var(--fs-body);
-    color: #1a2a3d;
-    background: #FFFFFF;
-    border: 1px solid #d0d8e4;
-    border-radius: var(--radius-md);
-    transition: all var(--transition-fast);
-    outline: none;
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-.form-group input::placeholder {
-    color: #9ca3af;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    border-color: #D4AF37;
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
-    background: #FFFFFF;
-}
-
-.form-group select {
-    cursor: pointer;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(100,116,139,0.8)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    padding-right: 2.5rem;
-    background-color: #FFFFFF;
-}
-
-.form-group select option {
-    background: #FFFFFF;
-    color: #1a2a3d;
-}
-
-.form-group input.error,
-.form-group select.error {
-    border-color: #ef4444;
-    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
-}
-
-.form-group input.success,
-.form-group select.success {
-    border-color: var(--accent-green);
-}
-
-/* Gold submit button */
-.contact-form .btn-primary {
-    background: linear-gradient(135deg, #D4AF37 0%, #F4C542 100%);
-    color: #072A66;
-    font-weight: 700;
-    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
-}
-
-.contact-form .btn-primary:hover {
-    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.55);
-}
-
-.form-note {
-    font-size: var(--fs-xs);
-    color: rgba(255, 255, 255, 0.5);
-    text-align: center;
-    margin-top: 1rem;
-}
-
-.form-note i {
-    color: #F4C542;
-}
-
-/* Form Success */
-.form-success {
-    text-align: center;
-    padding: 2rem 0;
-}
-
-.form-success .success-icon {
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, #D4AF37, #F4C542);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    color: #072A66;
-    margin: 0 auto 1.5rem;
-    animation: scaleIn 0.5s ease;
-}
-
-.form-success h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    color: #FFFFFF;
-}
-
-.form-success p {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-@keyframes scaleIn {
-    from { transform: scale(0); }
-    to { transform: scale(1); }
-}
-
-/* ========================================
-   FOOTER
-   ======================================== */
-.footer {
-    background: #061F4A;
-    padding: 3.5rem 0 0;
-    border-top: 1px solid rgba(199, 208, 224, 0.1);
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr 0.8fr 1.2fr;
-    gap: 3rem;
-    padding-bottom: 2.5rem;
-}
-
-.footer-brand p {
-    color: #C7D0E0;
-    font-size: var(--fs-small);
-    line-height: 1.7;
-    margin: 1rem 0 1.5rem;
-}
-
-.footer-logo {
-    margin-bottom: 0.5rem;
-}
-
-.footer-socials {
-    display: flex;
-    gap: 0.8rem;
-}
-
-.footer-socials a {
-    width: 38px;
-    height: 38px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(199, 208, 224, 0.06);
-    border: 1px solid rgba(199, 208, 224, 0.12);
-    border-radius: 50%;
-    color: #C7D0E0;
-    font-size: 0.9rem;
-    transition: all var(--transition-fast);
-}
-
-.footer-socials a:hover {
-    background: #D4AF37;
-    color: #061F4A;
-    border-color: #D4AF37;
-    transform: translateY(-2px);
-}
-
-.footer-links-col h4 {
-    font-size: var(--fs-body);
-    font-weight: 700;
-    margin-bottom: 1.2rem;
-    color: #FFFFFF;
-}
-
-.footer-links-col ul {
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-}
-
-.footer-links-col li,
-.footer-links-col a {
-    font-size: var(--fs-small);
-    color: #C7D0E0;
-    transition: color var(--transition-fast);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.footer-links-col a:hover {
-    color: #D4AF37;
-}
-
-.footer-links-col li i {
-    color: #D4AF37;
-    font-size: var(--fs-xs);
-    width: 20px;
-    text-align: center;
-}
-
-.footer-bottom {
-    border-top: 1px solid rgba(199, 208, 224, 0.1);
-    padding: 1.5rem 0;
-    text-align: center;
-}
-
-.footer-bottom p {
-    font-size: var(--fs-small);
-    color: rgba(199, 208, 224, 0.5);
-}
-
-.footer-disclaimer {
-    font-size: var(--fs-xs) !important;
-    margin-top: 0.5rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
-}
-
-/* ========================================
-   WHATSAPP FLOATING BUTTON
-   ======================================== */
-.whatsapp-float {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 56px;
-    height: 56px;
-    background: #25D366;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.6rem;
-    color: white;
-    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
-    z-index: 9999;
-    transition: all var(--transition-base);
-    animation: pulse-green 2s infinite;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
-}
-
-@keyframes pulse-green {
-    0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
-    70%  { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-}
-
-/* ========================================
-   CAREER SECTION RESPONSIVE
-   ======================================== */
-@media (max-width: 1024px) {
-    .section-career {
-        padding: 5rem 0;
-    }
-    .career-split {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-    .career-left {
-        max-width: 100%;
-        order: 1;
-    }
-    .career-right {
-        order: 2;
-    }
-    .career-floating-badge.badge-1 {
-        left: 0;
-        top: -15px;
-    }
-    .career-floating-badge.badge-2 {
-        right: 0;
-        bottom: -15px;
-    }
-}
-
-@media (max-width: 768px) {
-    .section-career {
-        padding: 4rem 0;
-    }
-    .career-split {
-        gap: 2.5rem;
-    }
-    .career-floating-badge {
-        padding: 0.5rem 1rem;
-        font-size: 0.85rem;
-    }
-    .career-floating-badge i {
-        font-size: 0.95rem;
-    }
-    .career-ctas {
-        flex-direction: column;
-    }
-    .career-ctas .btn {
-        width: 100%;
-        justify-content: center;
-    }
-}
-
-/* ========================================
-   LANGUAGE OVERRIDES (HINDI)
-   ======================================== */
-.lang-hi h1, .lang-hi h2, .lang-hi h3, 
-.lang-hi .section-title, .lang-hi .hero-title {
-    line-height: 1.4;
-    padding-top: 0.2em;
-}
-
-.lang-hi .nav-links a {
-    line-height: 1.4;
-    padding-top: 0.3rem;
-}
-
-.lang-hi .hero-badge,
-.lang-hi .section-tag,
-.lang-hi .career-floating-badge,
-.lang-hi .btn {
-    line-height: 1.4;
-    padding-top: 0.8rem;
-    padding-bottom: 0.6rem;
-}
-
-.lang-hi .career-benefits li {
-    line-height: 1.4;
-    padding-top: 1.2rem;
-    padding-bottom: 1.2rem;
-}
-
-/* ========================================
-   RESPONSIVE
-   ======================================== */
-@media (max-width: 1024px) {
-    .hero-split {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 2rem;
-    }
-    .hero-left {
-        max-width: 100%;
-        order: 1;
-    }
-    .hero-right {
-        order: 2;
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-    .hero-trust-indicators {
-        justify-content: center;
-    }
-    .hero-ctas {
-        justify-content: center;
-    }
-    .fintech-visual {
-        max-width: 100%;
-        width: 100%;
-        height: auto;
-        min-height: 320px;
-        aspect-ratio: 4 / 3;
-    }
-    .achievements-wrapper {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-    .achievements-image {
-        max-width: 450px;
-        width: 100%;
-        margin: 0 auto;
-    }
-    .achievements .section-header {
-        text-align: center;
-    }
-    .achievements .section-title,
-    .achievements .section-desc {
-        text-align: center;
-    }
-    .trust-banner {
-        justify-content: center;
-        text-align: center;
-    }
-    .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .why-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .testimonials-wrapper {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .navbar {
-        padding: 0.6rem 0;
-        background: #123E7A;
-        backdrop-filter: blur(10px);
-    }
-
-    .navbar.scrolled {
-        padding: 0.6rem 0;
-        background: rgba(18, 62, 122, 0.98);
-    }
-
-    .nav-logo {
-        gap: 8px;
-        font-size: 1.25rem;
-    }
-
-    .nav-logo .logo-icon {
-        display: none;
-    }
-
-    .hero {
-        padding: 4rem 0 2rem;
-    }
-
-    .hero-logo-mobile {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        order: 0;
-        width: 100%;
-        margin: -1rem 0 -1rem;
-        z-index: 5;
-    }
-
-    .hero-logo-mobile img {
-        width: 75px;
-        height: 75px;
-        object-fit: contain;
-        filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
-    }
-
-    .hero-split {
-        gap: 1.5rem;
-    }
-
-    .hero-graphics {
-        max-width: 320px;
-        height: 280px;
-        margin: 0 auto;
-    }
-
-    .chart-graphic {
-        width: 280px;
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-        top: 0;
-    }
-
-    .arrow-graphic {
-        top: 140px;
-        right: -25px;
-        padding: 0.5rem 0.8rem 0.5rem 0.5rem;
-    }
-
-    .shield-graphic {
-        bottom: 20px;
-        left: 0px;
-        padding: 0.5rem 0.8rem;
-    }
-
-    .nav-links {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(7, 42, 102, 0.98);
-        backdrop-filter: blur(10px);
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2rem;
-        z-index: 9999;
-    }
-
-    .nav-links.open {
-        display: flex;
-    }
-
-    .nav-links a {
-        font-size: 1.3rem;
-    }
-
-    .nav-cta {
-        display: none;
-    }
-
-    .hamburger {
-        display: flex;
-    }
-
-    .achievements-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .why-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-wrapper {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-
-    .contact-info .section-title {
-        text-align: center;
-    }
-
-    .contact-info .section-tag {
-        text-align: center;
-        display: block;
-    }
-
-    .contact-info > p {
-        text-align: center;
-    }
-
-    .contact-features {
-        align-items: center;
-    }
-
-    .contact-direct {
-        align-items: center;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .footer-socials {
-        justify-content: center;
-    }
-
-    .hero-title {
-        letter-spacing: -0.5px;
-    }
-
-    .hero-trust-indicators {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .hero-ctas {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .hero-scroll-indicator {
-        display: none;
-    }
-}
-
-@media (max-width: 480px) {
-    :root {
-        --fs-hero: clamp(1.6rem, 8vw, 2rem); /* 26px - 32px */
-        --fs-h2: clamp(1.6rem, 8vw, 2rem);
-        --fs-h3: clamp(1.15rem, 5vw, 1.25rem); /* 18px - 20px */
-        --fs-body: clamp(0.95rem, 4vw, 1rem); /* 15px - 16px */
-        --fs-small: 0.875rem;
-        --container-px: clamp(1rem, 5vw, 1.25rem); /* 16px - 20px */
-        --section-py: clamp(3rem, 10vw, 4.5rem);
-    }
-    
-    .hero-badge {
-        font-size: 0.65rem;
-    }
-    
-    .contact-form {
-        padding: 1.5rem 1.2rem;
-    }
-
-    .testimonial-card {
-        padding: 1.5rem;
-    }
-
-    .btn {
-        padding: 0.8rem 1.2rem;
-        font-size: var(--fs-small);
-        width: 100%; /* Ensure full-width tap area on very small screens */
-        justify-content: center;
-    }
-
-    .achievements-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* ========================================
-   LANGUAGE POPUP OVERLAY
-   ======================================== */
-.lang-popup-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 1;
-    transition: opacity 0.4s ease;
-}
-
-.lang-popup-overlay.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.lang-popup-card {
-    background: rgba(7, 42, 102, 0.95);
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    border-radius: var(--radius-xl);
-    padding: 3rem 2.5rem;
-    text-align: center;
-    max-width: 420px;
-    width: 90%;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    animation: popupSlideIn 0.5s ease-out;
-}
-
-@keyframes popupSlideIn {
-    0% { transform: translateY(30px) scale(0.95); opacity: 0; }
-    100% { transform: translateY(0) scale(1); opacity: 1; }
-}
-
-.lang-popup-icon {
-    font-size: 2.5rem;
-    color: var(--accent-gold);
-    margin-bottom: 1rem;
-}
-
-.lang-popup-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 0.3rem;
-}
-
-.lang-popup-subtitle {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    margin-bottom: 2rem;
-}
-
-.lang-popup-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-}
-
-.lang-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1.2rem 2rem;
-    border: 2px solid rgba(255, 255, 255, 0.15);
-    border-radius: var(--radius-lg);
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-primary);
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    min-width: 130px;
-}
-
-.lang-btn:hover {
-    border-color: var(--accent-gold);
-    background: rgba(212, 175, 55, 0.1);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
-}
-
-.lang-flag-img {
-    width: 48px;
-    height: auto;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-
-/* ========================================
-   FLOATING LANGUAGE TOGGLE
-   ======================================== */
-.lang-toggle-float {
-    position: fixed;
-    bottom: 100px;
-    right: 24px;
-    width: auto;
-    padding: 0.6rem 1rem;
-    background: linear-gradient(135deg, #072A66 0%, #0A3A8C 100%);
-    border: 1px solid rgba(212, 175, 55, 0.4);
-    border-radius: var(--radius-full);
-    color: var(--text-primary);
-    font-size: 0.85rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    z-index: 9998;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-}
-
-.lang-toggle-float:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(212, 175, 55, 0.3);
-    border-color: var(--accent-gold);
-}
-
-.lang-toggle-float i {
-    font-size: 1.1rem;
-    color: var(--accent-gold);
-}
-
-@media (max-width: 768px) {
-    .lang-toggle-float {
-        bottom: 90px;
-        right: 16px;
-        padding: 0.5rem 0.8rem;
-        font-size: 0.8rem;
-    }
-
-    .lang-popup-card {
-        padding: 2rem 1.5rem;
-    }
-
-    .lang-btn {
-        padding: 1rem 1.5rem;
-        min-width: 110px;
-    }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhariwal Investments — Financial Advisory & Insurance Solutions</title>
+    <meta name="description" content="Dhariwal Investments offers expert financial advisory, insurance planning, mutual funds, SIPs, and wealth management solutions. Book your free consultation today.">
+    <meta property="og:title" content="Dhariwal Investments — Your Trusted Financial Partner">
+    <meta property="og:description" content="Expert financial advisory, insurance planning, and wealth management solutions tailored for your goals.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <link rel="stylesheet" href="index.css?v=6.0">
+</head>
+<body>
+
+    <!-- ===== LANGUAGE POPUP ===== -->
+    <div class="lang-popup-overlay" id="lang-popup">
+        <div class="lang-popup-card">
+            <div class="lang-popup-icon"><i class="fas fa-globe"></i></div>
+            <h2 class="lang-popup-title">Choose Your Language</h2>
+            <p class="lang-popup-subtitle">अपनी भाषा चुनें</p>
+            <div class="lang-popup-buttons">
+                <button class="lang-btn" data-lang="en">
+                    <img src="https://flagcdn.com/w80/gb.png" alt="UK Flag" class="lang-flag-img">
+                    <span>English</span>
+                </button>
+                <button class="lang-btn" data-lang="hi">
+                    <img src="https://flagcdn.com/w80/in.png" alt="India Flag" class="lang-flag-img">
+                    <span>हिंदी</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo" id="nav-logo">
+                <span class="logo-icon"><img src="assets/logo-icon.png?v=3" alt="Dhariwal Investments Logo"></span>
+                <span class="logo-text">Dhariwal <span class="logo-highlight">Investments</span></span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#services" data-i18n="nav_services">Services</a></li>
+                <li><a href="#why-us" data-i18n="nav_whyus">Why Us</a></li>
+                <li><a href="#testimonials" data-i18n="nav_testimonials">Testimonials</a></li>
+                <li><a href="#careers" data-i18n="nav_careers">Start Your Career</a></li>
+                <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta" id="nav-cta" data-i18n="nav_cta">Book Free Consultation</a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-particles" id="hero-particles"></div>
+        <div class="container hero-split">
+            <!-- LEFT: Text Content -->
+            <div class="hero-left reveal">
+                <div class="hero-badge" data-i18n="hero_badge">
+                    <i class="fas fa-shield-halved"></i> SEBI Registered &bull; IRDAI Certified
+                </div>
+                <h1 class="hero-title" data-i18n="hero_title">
+                    Secure Your Future with<br>
+                    <span class="gradient-text">Trusted Insurance &amp; Investment Solutions</span>
+                </h1>
+                <p class="hero-subtitle" data-i18n="hero_subtitle">
+                    25+ Years of Experience &nbsp;|&nbsp; 6000+ Happy Clients
+                </p>
+                <div class="hero-trust-indicators">
+                    <div class="trust-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span data-i18n="hero_trust1">25+ Years Experience</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span data-i18n="hero_trust2">6000+ Clients Served</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span data-i18n="hero_trust3">Trusted Financial Advisor</span>
+                    </div>
+                </div>
+                <div class="hero-ctas">
+                    <a href="#contact" class="btn btn-primary" id="hero-cta-primary" data-i18n="hero_cta1">
+                        <i class="fas fa-calendar-check"></i> Get Free Consultation
+                    </a>
+                    <a href="#services" class="btn btn-secondary" id="hero-cta-secondary" data-i18n="hero_cta3">
+                        <i class="fas fa-arrow-right"></i> Explore Services
+                    </a>
+                    <a href="https://wa.me/919828051556" class="btn btn-whatsapp" id="hero-cta-whatsapp" target="_blank" rel="noopener" data-i18n="hero_cta2">
+                        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                    </a>
+                </div>
+            </div>
+            <!-- Mobile Hero Logo (shown only on mobile) -->
+            <div class="hero-logo-mobile">
+                <img src="assets/logo-icon.png?v=3" alt="Dhariwal Investments Logo">
+            </div>
+            <!-- RIGHT: Premium Fintech Animated Visualization -->
+            <div class="hero-right reveal" id="fintech-container">
+                <div class="fintech-visual" id="fintech-visual">
+                    <!-- Background Animated Grid / Network -->
+                    <svg class="fintech-bg-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet">
+                        <defs>
+                            <radialGradient id="netGrad" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="rgba(10, 58, 140, 0.4)" />
+                                <stop offset="100%" stop-color="rgba(2, 17, 36, 0)" />
+                            </radialGradient>
+                            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur stdDeviation="8" result="blur" />
+                                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                            </filter>
+                        </defs>
+                        <rect width="100%" height="100%" fill="url(#netGrad)" />
+                        <!-- Network Dots & Lines (Populated by JS or static) -->
+                        <g id="network-group" opacity="0.4"></g>
+                        
+                        <!-- Vertical Growth Bars -->
+                        <g id="growth-bars" filter="url(#glow)">
+                            <!-- JS will generate these dynamically -->
+                        </g>
+
+                        <!-- The Compound Curve (centered in viewBox) -->
+                        <path id="compound-curve" d="M 30 520 C 150 500 250 450 350 350 S 550 150 770 50" fill="none" stroke="rgba(212, 175, 55, 1)" stroke-width="4" stroke-linecap="round" filter="url(#glow)" />
+                        
+                        <!-- Glowing Data Nodes along the Curve -->
+                        <g id="curve-nodes">
+                            <!-- JS will position these precisely on the path -->
+                        </g>
+                    </svg>
+
+                    <!-- Floating HTML Overlays (Coins, Particles, Tooltips) -->
+                    <div id="floating-elements-layer">
+                        <div class="fintech-badge" id="badge-insight">
+                            <i class="fas fa-chart-line"></i> <span data-i18n="hero_compounding">Compounding</span>
+                        </div>
+                        <div class="fintech-badge" id="badge-secure">
+                            <i class="fas fa-shield-halved"></i> <span data-i18n="hero_protected">100% Secure</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <span data-i18n="hero_scroll">Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ===== ACHIEVEMENTS ===== -->
+    <section class="achievements" id="stats-bar">
+        <div class="container achievements-wrapper">
+            <!-- LEFT: Achievement Photos Carousel -->
+            <div class="achievements-image reveal">
+                <div class="achievement-img-glow"></div>
+                <div class="achievement-carousel" id="achievement-carousel">
+                    <img src="assets/recognition1.jpg.jpg" alt="LIC Recognition Ceremony" class="achievement-img active" />
+                    <img src="assets/recognition2.jpg.jpg" alt="Agent Appreciation Event" class="achievement-img" />
+                    <img src="assets/recognition3.jpg.jpg" alt="Meet MD Sir — Award Ceremony" class="achievement-img" />
+                </div>
+                <div class="achievement-carousel-dots" id="achievement-dots">
+                    <button class="ach-dot active" aria-label="Photo 1"></button>
+                    <button class="ach-dot" aria-label="Photo 2"></button>
+                    <button class="ach-dot" aria-label="Photo 3"></button>
+                </div>
+                <div class="achievement-badge-float">
+                    <i class="fas fa-award"></i>
+                    <span data-i18n="ach_badge">Award Winning</span>
+                </div>
+            </div>
+            <!-- RIGHT: Stats & Trust -->
+            <div class="achievements-content">
+                <div class="section-header reveal">
+                    <span class="section-tag" data-i18n="ach_tag">Our Track Record</span>
+                    <h2 class="section-title" data-i18n="ach_title">Proven <span class="gradient-text">Achievements</span></h2>
+                    <p class="section-desc" data-i18n="ach_desc">Decades of trust, thousands of satisfied clients, and a legacy of financial excellence.</p>
+                </div>
+                <div class="achievements-grid">
+                    <div class="achievement-stat reveal">
+                        <div class="achievement-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="achievement-info">
+                            <div class="stat-row">
+                                <div class="stat-number" data-target="25">0</div>
+                                <div class="stat-suffix">+</div>
+                            </div>
+                            <div class="stat-label" data-i18n="ach_years">Years Experience</div>
+                        </div>
+                    </div>
+                    <div class="achievement-stat reveal">
+                        <div class="achievement-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="achievement-info">
+                            <div class="stat-row">
+                                <div class="stat-number" data-target="6000">0</div>
+                                <div class="stat-suffix">+</div>
+                            </div>
+                            <div class="stat-label" data-i18n="ach_clients">Happy Clients</div>
+                        </div>
+                    </div>
+                    <div class="achievement-stat reveal">
+                        <div class="achievement-icon">
+                            <i class="fas fa-file-shield"></i>
+                        </div>
+                        <div class="achievement-info">
+                            <div class="stat-row">
+                                <div class="stat-number" data-target="8500">0</div>
+                                <div class="stat-suffix">+</div>
+                            </div>
+                            <div class="stat-label" data-i18n="ach_policies">Insurance Policies</div>
+                        </div>
+                    </div>
+                    <div class="achievement-stat reveal">
+                        <div class="achievement-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="achievement-info">
+                            <div class="stat-row">
+                                <div class="stat-number" data-target="34">0</div>
+                                <div class="stat-suffix">+</div>
+                            </div>
+                            <div class="stat-label" data-i18n="ach_agents">Agents</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="trust-banner reveal">
+                    <i class="fas fa-shield-halved"></i>
+                    <span data-i18n="ach_trust_banner">Trusted Financial Advisor — SEBI Registered & IRDAI Certified</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag" data-i18n="svc_tag">What We Offer</span>
+                <h2 class="section-title" data-i18n="svc_title">Comprehensive Financial <span class="gradient-text">Solutions</span></h2>
+                <p class="section-desc" data-i18n="svc_desc">From wealth creation to protection — we cover every aspect of your financial journey.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal" id="service-mutual-funds">
+                    <div class="service-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3 data-i18n="svc_mf_title">Mutual Funds</h3>
+                    <p data-i18n="svc_mf_desc">Diversified mutual fund portfolios curated by experts to maximize your returns while managing risk.</p>
+                    <a href="#contact" class="service-link" data-i18n="svc_learn">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card reveal" id="service-insurance">
+                    <div class="service-icon"><i class="fas fa-umbrella"></i></div>
+                    <h3 data-i18n="svc_ins_title">Life & Health Insurance</h3>
+                    <p data-i18n="svc_ins_desc">Comprehensive life, health, and term insurance plans to protect you and your loved ones.</p>
+                    <a href="#contact" class="service-link" data-i18n="svc_learn">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card reveal" id="service-sip">
+                    <div class="service-icon"><i class="fas fa-piggy-bank"></i></div>
+                    <h3 data-i18n="svc_sip_title">SIP Planning</h3>
+                    <p data-i18n="svc_sip_desc">Systematic Investment Plans designed to build long-term wealth through disciplined, regular investing.</p>
+                    <a href="#contact" class="service-link" data-i18n="svc_learn">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card reveal" id="service-vehicle">
+                    <div class="service-icon"><i class="fas fa-car-side"></i></div>
+                    <h3 data-i18n="svc_veh_title">Vehicle Insurance</h3>
+                    <p data-i18n="svc_veh_desc">Comprehensive motor insurance for your cars and two-wheelers, covering accidents, theft, and third-party liabilities.</p>
+                    <a href="#contact" class="service-link" data-i18n="svc_learn">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card reveal" id="service-retirement">
+                    <div class="service-icon"><i class="fas fa-house-chimney"></i></div>
+                    <h3 data-i18n="svc_ret_title">Retirement Planning</h3>
+                    <p data-i18n="svc_ret_desc">Customized retirement strategies to ensure financial freedom and a comfortable life after retirement.</p>
+                    <a href="#contact" class="service-link" data-i18n="svc_learn">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card reveal" id="service-real-estate">
+                    <div class="service-icon"><i class="fas fa-building-circle-check"></i></div>
+                    <h3 data-i18n="svc_re_title">Real Estate Investment</h3>
+                    <p data-i18n="svc_re_desc">Expert guidance and curated opportunities in high-growth residential and commercial real estate projects.</p>
+                    <a href="#contact" class="service-link" data-i18n="svc_learn">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHY CHOOSE US ===== -->
+    <section class="why-us" id="why-us">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag" data-i18n="why_tag">Why Dhariwal Investments</span>
+                <h2 class="section-title" data-i18n="why_title">Built on <span class="gradient-text">Trust & Expertise</span></h2>
+                <p class="section-desc" data-i18n="why_desc">We bring decades of experience, certified expertise, and a client-first approach to every relationship.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card reveal" id="why-experienced-advisor">
+                    <div class="why-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3 data-i18n="why1_title">Experienced financial advisor</h3>
+                    <p data-i18n="why1_desc">Decades of expertise in navigating complex financial markets with a proven track record of success.</p>
+                </div>
+                <div class="why-card reveal" id="why-personalized-planning">
+                    <div class="why-icon"><i class="fas fa-sliders-h"></i></div>
+                    <h3 data-i18n="why2_title">Personalized financial planning</h3>
+                    <p data-i18n="why2_desc">Tailored strategies designed around your unique life goals, risk appetite, and future aspirations.</p>
+                </div>
+                <div class="why-card reveal" id="why-transparent-guidance">
+                    <div class="why-icon"><i class="fas fa-gem"></i></div>
+                    <h3 data-i18n="why3_title">Transparent guidance</h3>
+                    <p data-i18n="why3_desc">Clear, honest advice with no hidden agendas, ensuring you make informed decisions with absolute confidence.</p>
+                </div>
+                <div class="why-card reveal" id="why-longterm-relationships">
+                    <div class="why-icon"><i class="fas fa-handshake"></i></div>
+                    <h3 data-i18n="why4_title">Long-term client relationships</h3>
+                    <p data-i18n="why4_desc">We grow with you, providing consistent support and evolving plans for every stage of your financial journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag" data-i18n="test_tag">Client Stories</span>
+                <h2 class="section-title" data-i18n="test_title">Trusted by <span class="gradient-text">Thousands</span></h2>
+                <p class="section-desc" data-i18n="test_desc">Hear from clients who transformed their financial future with Dhariwal Investments.</p>
+            </div>
+            <div class="testimonials-wrapper reveal">
+                <!-- Carousel Side -->
+                <div class="testimonial-carousel-side">
+                    <div class="testimonial-carousel" id="testimonial-carousel">
+                        <div class="testimonial-track" id="testimonial-track">
+                            <div class="testimonial-card">
+                                <div class="testimonial-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="testimonial-text">"Dhariwal Investments completely transformed our family's financial planning. Their SIP recommendations have given us consistent 18% returns over 5 years. Truly trustworthy advisors!"</p>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar"><i class="fas fa-user"></i></div>
+                                    <div>
+                                        <div class="author-name">Rajesh Sharma</div>
+                                        <div class="author-role">Business Owner, Jaipur</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="testimonial-card">
+                                <div class="testimonial-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="testimonial-text">"I was confused about life insurance options until I met the team at Dhariwal Investments. They explained everything clearly and helped me choose the perfect policy for my family."</p>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar"><i class="fas fa-user"></i></div>
+                                    <div>
+                                        <div class="author-name">Priya Mehta</div>
+                                        <div class="author-role">Software Engineer, Pune</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="testimonial-card">
+                                <div class="testimonial-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="testimonial-text">"Their retirement planning service gave me peace of mind. At 45, I now have a clear roadmap to retire comfortably by 58. Professional, transparent, and genuinely caring."</p>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar"><i class="fas fa-user"></i></div>
+                                    <div>
+                                        <div class="author-name">Anil Gupta</div>
+                                        <div class="author-role">Senior Manager, Delhi</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn" id="carousel-prev" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
+                            <div class="carousel-dots" id="carousel-dots"></div>
+                            <button class="carousel-btn" id="carousel-next" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Side -->
+                <div class="review-form-side">
+                    <div class="mini-review-box">
+                        <h3 data-i18n="review_title">Share Your Experience</h3>
+                        <form id="review-form" class="review-form">
+                            <div class="form-group">
+                                <input type="text" id="review-name" placeholder="Full Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="review-city" placeholder="City" required>
+                            </div>
+                            <div class="rating-group">
+                                <div class="star-rating" id="star-rating">
+                                    <i class="far fa-star" data-value="1"></i>
+                                    <i class="far fa-star" data-value="2"></i>
+                                    <i class="far fa-star" data-value="3"></i>
+                                    <i class="far fa-star" data-value="4"></i>
+                                    <i class="far fa-star" data-value="5"></i>
+                                </div>
+                                <input type="hidden" id="review-rating" value="0">
+                            </div>
+                            <div class="form-group">
+                                <textarea id="review-text" rows="3" placeholder="Your review..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full" data-i18n="review_submit">Submit Review</button>
+                            <div id="review-success" class="review-success-msg" style="display: none;">
+                                <i class="fas fa-check-circle"></i> Added!
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>        </div>
+    </section>
+
+    <!-- ===== START YOUR CAREER (LIC AGENTS) ===== -->
+    <section class="section-career" id="careers">
+        <div class="container">
+            <div class="career-split">
+                <!-- Left: Content -->
+                <div class="career-left reveal">
+                    <span class="section-tag" data-i18n="cr_tag">Start Your Career</span>
+                    <h2 class="section-title" data-i18n="cr_title">Start Your Career in Finance with <span class="gradient-text">Zero Experience</span></h2>
+                    <p class="career-desc" data-i18n="cr_desc">Join Dhariwal Investments as an LIC Insurance Advisor. We provide full training, support, and the platform you need to build a flexible, high-income career in the financial sector.</p>
+                    
+                    <ul class="career-benefits">
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="cr_b1">No prior experience required</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="cr_b2">Complete training provided from basics</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="cr_b3">Flexible working (part-time / full-time)</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="cr_b4">Opportunity to earn a handsome income</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="cr_b5">Work with a trusted financial advisory firm</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="cr_b6">Long-term career growth in finance</span></li>
+                    </ul>
+
+                    <div class="career-ctas">
+                        <a href="#contact" class="btn btn-primary" data-i18n="cr_btn1">Apply Now</a>
+                        <a href="https://api.whatsapp.com/send?phone=919828051556&text=Hello,%20I%20am%20interested%20in%20joining%20as%20an%20LIC%20Agent.%20Please%20share%20more%20details." class="btn btn-outline" target="_blank" data-i18n="cr_btn2"><i class="fab fa-whatsapp"></i> Talk on WhatsApp</a>
+                    </div>
+                </div>
+
+                <!-- Right: Visual -->
+                <div class="career-right reveal" id="career-image-box">
+                    <div class="career-image-wrapper">
+                        <img src="assets/career-growth.png" alt="Career Growth in Finance" class="career-img">
+                        <div class="career-floating-badge badge-1">
+                            <i class="fas fa-chart-line"></i>
+                            <span data-i18n="cr_badge1">High Income Potential</span>
+                        </div>
+                        <div class="career-floating-badge badge-2">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span data-i18n="cr_badge2">Full Training</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LEAD CAPTURE / CTA ===== -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info reveal">
+                    <span class="section-tag" data-i18n="contact_tag">Get Started</span>
+                    <h2 class="section-title" data-i18n="contact_title">Get Free Insurance & <span class="gradient-text">Investment Consultation</span></h2>
+                    <p data-i18n="contact_desc">Fill in your details and our expert advisor will reach out within 24 hours to discuss your financial goals — completely free, no obligations.</p>
+                    <div class="contact-features">
+                        <div class="contact-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span data-i18n="contact_f1">100% Free Consultation</span>
+                        </div>
+                        <div class="contact-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span data-i18n="contact_f2">No Obligations or Hidden Fees</span>
+                        </div>
+                        <div class="contact-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span data-i18n="contact_f3">Personalized Financial Plan</span>
+                        </div>
+                        <div class="contact-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span data-i18n="contact_f4">Expert Guidance from Day One</span>
+                        </div>
+                    </div>
+                    <div class="contact-direct">
+                        <div class="contact-direct-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 98280 51556</span>
+                        </div>
+                        <div class="contact-direct-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>dhariwal4902@gmail.com</span>
+                        </div>
+                        <div class="contact-direct-item">
+                            <i class="fas fa-location-dot"></i>
+                            <span>Opp. St Anselms School, Ajmer, Rajasthan</span>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form reveal" id="contact-form">
+                    <div class="form-group">
+                        <label for="form-name" data-i18n="form_name">Full Name</label>
+                        <input type="text" id="form-name" name="name" data-i18n-placeholder="form_name_ph" placeholder="e.g. Rahul Sharma" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-phone" data-i18n="form_phone">Phone Number</label>
+                        <input type="tel" id="form-phone" name="phone" data-i18n-placeholder="form_phone_ph" placeholder="+91 98280 51556" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-email" data-i18n="form_email">Email Address</label>
+                        <input type="email" id="form-email" name="email" data-i18n-placeholder="form_email_ph" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-service" data-i18n="form_service">Interested In</label>
+                        <select id="form-service" name="service" required>
+                            <option value="" disabled selected data-i18n="form_select">Select a service</option>
+                            <option value="mutual-funds" data-i18n="form_opt_mf">Mutual Funds</option>
+                            <option value="insurance" data-i18n="form_opt_ins">Life & Health Insurance</option>
+                            <option value="sip" data-i18n="form_opt_sip">SIP Planning</option>
+                            <option value="vehicle-insurance" data-i18n="form_opt_veh">Vehicle Insurance</option>
+                            <option value="retirement" data-i18n="form_opt_ret">Retirement Planning</option>
+                            <option value="real-estate" data-i18n="form_opt_re">Real Estate Investment</option>
+                            <option value="other" data-i18n="form_opt_other">Other / General Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-message" data-i18n="form_message">Message</label>
+                        <textarea id="form-message" name="message" rows="4" data-i18n-placeholder="form_message_ph" placeholder="Tell us more about your requirements..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" id="form-submit" data-i18n="form_submit">
+                        <i class="fas fa-paper-plane"></i> Request Consultation
+                    </button>
+                    <p class="form-note" data-i18n="form_note">We respect your privacy. Your information is 100% secure.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo footer-logo">
+                        <img src="assets/logo-icon.png?v=3" alt="Dhariwal Investments Logo" class="logo-icon">
+                        <span class="logo-text">Dhariwal <span class="logo-highlight">Investments</span></span>
+                    </a>
+                    <p data-i18n="footer_brand_desc">Your trusted partner for financial advisory and insurance solutions. Building wealth, securing futures since 2000.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links-col">
+                    <h4 data-i18n="footer_quick">Quick Links</h4>
+                    <ul>
+                        <li><a href="#services" data-i18n="footer_services">Our Services</a></li>
+                        <li><a href="#why-us" data-i18n="footer_whyus">Why Choose Us</a></li>
+                        <li><a href="#testimonials" data-i18n="footer_testimonials">Testimonials</a></li>
+                        <li><a href="#contact" data-i18n="footer_contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h4 data-i18n="footer_svc">Services</h4>
+                    <ul>
+                        <li><a href="#contact" data-i18n="footer_mf">Mutual Funds</a></li>
+                        <li><a href="#contact" data-i18n="footer_ins">Insurance Plans</a></li>
+                        <li><a href="#contact" data-i18n="footer_sip">SIP Planning</a></li>
+                        <li><a href="#contact" data-i18n="footer_veh">Vehicle Insurance</a></li>
+                        <li><a href="#contact" data-i18n="footer_ret">Retirement Planning</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h4 data-i18n="footer_contact_h">Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +91 98280 51556</li>
+                        <li><i class="fas fa-envelope"></i> dhariwal4902@gmail.com</li>
+                        <li><i class="fas fa-location-dot"></i> Ajmer, Rajasthan</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="footer_copy">&copy; 2026 Dhariwal Investments. All rights reserved.</p>
+                <p class="footer-disclaimer" data-i18n="footer_disclaimer">Disclaimer: Mutual fund investments are subject to market risks. Please read all scheme-related documents carefully before investing. Insurance is a subject matter of solicitation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== FLOATING LANGUAGE TOGGLE ===== -->
+    <button class="lang-toggle-float" id="lang-toggle" aria-label="Switch Language">
+        <i class="fas fa-language"></i>
+        <span id="lang-toggle-label">हिंदी</span>
+    </button>
+
+    <!-- ===== FLOATING WHATSAPP ===== -->
+    <a href="https://wa.me/919828051556" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="script.js?v=6.0"></script>
+</body>
+</html>
