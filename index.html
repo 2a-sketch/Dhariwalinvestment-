@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhariwal Investments — Financial Advisory & Insurance Solutions</title>
+    <meta name="description" content="Dhariwal Investments offers expert financial advisory, insurance planning, mutual funds, SIPs, and wealth management solutions. Book your free consultation today.">
+    <meta property="og:title" content="Dhariwal Investments — Your Trusted Financial Partner">
+    <meta property="og:description" content="Expert financial advisory, insurance planning, and wealth management solutions tailored for your goals.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <link rel="stylesheet" href="index.css?v=6.0">
+</head>
+<body>
+
+    <!-- ===== LANGUAGE POPUP ===== -->
+    <div class="lang-popup-overlay" id="lang-popup">
+        <div class="lang-popup-card">
+            <div class="lang-popup-icon"><i class="fas fa-globe"></i></div>
+            <h2 class="lang-popup-title">Choose Your Language</h2>
+            <p class="lang-popup-subtitle">अपनी भाषा चुनें</p>
+            <div class="lang-popup-buttons">
+                <button class="lang-btn" data-lang="en">
+                    <img src="https://flagcdn.com/w80/gb.png" alt="UK Flag" class="lang-flag-img">
+                    <span>English</span>
+                </button>
+                <button class="lang-btn" data-lang="hi">
+                    <img src="https://flagcdn.com/w80/in.png" alt="India Flag" class="lang-flag-img">
+                    <span>हिंदी</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo" id="nav-logo">
+                <span class="logo-icon"><img src="assets/logo-icon.png?v=3" alt="Dhariwal Investments Logo"></span>
+                <span class="logo-text">Dhariwal <span class="logo-highlight">Investments</span></span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#services" data-i18n="nav_services">Services</a></li>
+                <li><a href="#why-us" data-i18n="nav_whyus">Why Us</a></li>
+                <li><a href="#testimonials" data-i18n="nav_testimonials">Testimonials</a></li>
+                <li><a href="#careers" data-i18n="nav_careers">Start Your Career</a></li>
+                <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta" id="nav-cta" data-i18n="nav_cta">Book Free Consultation</a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-particles" id="hero-particles"></div>
+        <div class="container hero-split">
+            <!-- LEFT: Text Content -->
+            <div class="hero-left reveal">
+                <div class="hero-badge" data-i18n="hero_badge">
+                    <i class="fas fa-shield-halved"></i> SEBI Registered &bull; IRDA Certified
+                </div>
+                <h1 class="hero-title" data-i18n="hero_title">
+                    Secure Your Future with<br>
+                    <span class="gradient-text">Trusted Insurance &amp; Investment Solutions</span>
+                </h1>
+                <p class="hero-subtitle" data-i18n="hero_subtitle">
+                    25+ Years of Experience &nbsp;|&nbsp; 6000+ Happy Clients
+                </p>
+                <div class="hero-trust-indicators">
+                    <div class="trust-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span data-i18n="hero_trust1">25+ Years Experience</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span data-i18n="hero_trust2">6000+ Clients Served</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span data-i18n="hero_trust3">Trusted Financial Advisor</span>
+                    </div>
+                </div>
+                <div class="hero-ctas">
+                    <a href="#contact" class="btn btn-primary" id="hero-cta-primary" data-i18n="hero_cta1">
+                        <i class="fas fa-calendar-check"></i> Get Free Consultation
+                    </a>
+                    <a href="#services" class="btn btn-secondary" id="hero-cta-secondary" data-i18n="hero_cta3">
+                        <i class="fas fa-arrow-right"></i> Explore Services
+                    </a>
+                    <a href="https://wa.me/919828051556" class="btn btn-whatsapp" id="hero-cta-whatsapp" target="_blank" rel="noopener" data-i18n="hero_cta2">
+                        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                    </a>
+                </div>
+            </div>
+            <!-- Mobile Hero Logo (shown only on mobile) -->
+            <div class="hero-logo-mobile">
+                <img src="assets/logo-icon.png?v=3" alt="Dhariwal Investments Logo">
+            </div>
+            <!-- RIGHT: Premium Fintech Animated Visualization -->
+            <div class="hero-right reveal" id="fintech-container">
+                <div class="fintech-visual" id="fintech-visual">
+                    <!-- Background Animated Grid / Network -->
+                    <svg class="fintech-bg-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet">
+                        <defs>
+                            <radialGradient id="netGrad" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="rgba(10, 58, 140, 0.4)" />
+                                <stop offset="100%" stop-color="rgba(2, 17, 36, 0)" />
+                            </radialGradient>
+                            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur stdDeviation="8" result="blur" />
+                                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                            </filter>
+                        </defs>
+                        <rect width="100%" height="100%" fill="url(#netGrad)" />
+                        <!-- Network Dots & Lines (Populated by JS or static) -->
+                        <g id="network-group" opacity="0.4"></g>
+                        
+                        <!-- Vertical Growth Bars -->
+                        <g id="growth-bars" filter="url(#glow)">
+                            <!-- JS will generate these dynamically -->
+                        </g>
+
+                        <!-- The Compound Curve (centered in viewBox) -->
+                        <path id="compound-curve" d="M 30 520 C 150 500 250 450 350 350 S 550 150 770 50" fill="none" stroke="rgba(212, 175, 55, 1)" stroke-width="4" stroke-linecap="round" filter="url(#glow)" />
+                        
+                        <!-- Glowing Data Nodes along the Curve -->
+                        <g id="curve-nodes">
+                            <!-- JS will position these precisely on the path -->
+                        </g>
+                    </svg>
+
+                    <!-- Floating HTML Overlays (Coins, Particles, Tooltips) -->
+                    <div id="floating-elements-layer">
+                        <div class="fintech-badge" id="badge-insight">
+                            <i class="fas fa-chart-line"></i> <span data-i18n="hero_compounding">Compounding</span>
+                        </div>
+                        <div class="fintech-badge" id="badge-secure">
+                            <i class="fas fa-shield-halved"></i> <span data-i18n="hero_protected">100% Secure</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <span data-i18n="hero_scroll">Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ===== ACHIEVEMENTS ===== -->
+    <section class="achievements" id="stats-bar">
+        <div class="container achievements-wrapper">
+            <!-- LEFT: Achievement Photos Carousel -->
+            <div class="achievements-image reveal">
+                <div class="achievement-img-glow"></div>
+                <div class="achievement-carousel" id="achievement-carousel">
+                    <img src="assets/recognition1.jpg.jpg" alt="LIC Recognition Ceremony" class="achievement-img active" />
+                    <img src="assets/recognition2.jpg.jpg" alt="Agent Appreciation Event" class="achievement-img" />
+                    <img src="assets/recognition3.jpg.jpg" alt="Meet MD Sir — Award Ceremony" class="achievement-img" />
+                </div>
+                <div class="achievement-carousel-dots" id="achievement-dots">
+                    <button class="ach-dot active" aria-label="Photo 1"></button>
+                    <button class="ach-dot" aria-label="Photo 2"></button>
+                    <button class="ach-dot" aria-label="Photo 3"></button>
+                </div>
+                <div class="achievement-badge-float">
+                    <i class="fas fa-award"></i>
+                    <span data-i18n="ach_badge">Award Winning</span>
+                </div>
+            </div>
+            <!-- RIGHT: Stats & Trust -->
+            <div class="achievements-content">
+                <div class="section-header reveal">
+                    <span class="section-tag" data-i18n="ach_tag">Our Track Record</span>
+                    <h2 class="section-title" data-i18n="ach_title">Proven <span class="gradient-text">Achievements</span></h2>
+                    <p class="section-desc" data-i18n="ach_desc">Decades of trust, thousands of satisfied clients, and a legacy of financial excellence.</p>
+                </div>
+                <div class="achievements-grid">
+                    <div class="achievement-stat reveal">
+                        <div class="achievement-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="achievement-info">
+                            <div class="stat-row">
+                                <div class="stat-number" data-target="25">0</div>
+                                <div class="stat-suffix">+</div>
+                            </div>
+                            <div class="stat-label" data-i18n="ach_years">Years Experience</div>
+                        </div>
+                    </div>
+                    <div class="achievement-stat reveal">
+                        <div class="achievement-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="achievement-info">
+                            <div class="stat-row">
+                                <div class="stat-number" data-target="6000">0</div>
+                                <div class="stat-suffix">+</div>
+                            </div>
+                            <div class="stat-label" data-i18n="ach_clients">Happy Clients</div>
+                        </div>
+                    </div>
+                    <div class="achievement-stat reveal">
+                        <div class="achievement-icon">
+                            <i class="fas fa-file-shield"></i>
+                        </div>
+                        <div class="achievement-info">
+                            <div class="stat-row">
+                                <div class="stat-number" data-target="8500">0</div>
+                                <div class="stat-suffix">+</div>
+                            </div>
+                            <div class="stat-label" data-i18n="ach_policies">Insurance Policies</div>
+                        </div>
+                    </div>
+                    <div class="achievement-stat reveal">
+                        <div class="achievement-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="achievement-info">
+                            <div class="stat-row">
+                                <div class="stat-number" data-target="34">0</div>
+                                <div class="stat-suffix">+</div>
+                            </div>
+                            <div class="stat-label" data-i18n="ach_agents">Agents</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="trust-banner reveal">
+                    <i class="fas fa-shield-halved"></i>
+                    <span data-i18n="ach_trust_banner">Trusted Financial Advisor — SEBI Registered & IRDA Certified</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag" data-i18n="svc_tag">What We Offer</span>
+                <h2 class="section-title" data-i18n="svc_title">Comprehensive Financial <span class="gradient-text">Solutions</span></h2>
+                <p class="section-desc" data-i18n="svc_desc">From wealth creation to protection — we cover every aspect of your financial journey.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal" id="service-mutual-funds">
+                    <div class="service-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3 data-i18n="svc_mf_title">Mutual Funds</h3>
+                    <p data-i18n="svc_mf_desc">Diversified mutual fund portfolios curated by experts to maximize your returns while managing risk.</p>
+                    <a href="#contact" class="service-link" data-i18n="svc_learn">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card reveal" id="service-insurance">
+                    <div class="service-icon"><i class="fas fa-umbrella"></i></div>
+                    <h3 data-i18n="svc_ins_title">Life & Health Insurance</h3>
+                    <p data-i18n="svc_ins_desc">Comprehensive life, health, and term insurance plans to protect you and your loved ones.</p>
+                    <a href="#contact" class="service-link" data-i18n="svc_learn">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card reveal" id="service-sip">
+                    <div class="service-icon"><i class="fas fa-piggy-bank"></i></div>
+                    <h3 data-i18n="svc_sip_title">SIP Planning</h3>
+                    <p data-i18n="svc_sip_desc">Systematic Investment Plans designed to build long-term wealth through disciplined, regular investing.</p>
+                    <a href="#contact" class="service-link" data-i18n="svc_learn">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card reveal" id="service-vehicle">
+                    <div class="service-icon"><i class="fas fa-car-side"></i></div>
+                    <h3 data-i18n="svc_veh_title">Vehicle Insurance</h3>
+                    <p data-i18n="svc_veh_desc">Comprehensive motor insurance for your cars and two-wheelers, covering accidents, theft, and third-party liabilities.</p>
+                    <a href="#contact" class="service-link" data-i18n="svc_learn">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card reveal" id="service-retirement">
+                    <div class="service-icon"><i class="fas fa-house-chimney"></i></div>
+                    <h3 data-i18n="svc_ret_title">Retirement Planning</h3>
+                    <p data-i18n="svc_ret_desc">Customized retirement strategies to ensure financial freedom and a comfortable life after retirement.</p>
+                    <a href="#contact" class="service-link" data-i18n="svc_learn">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card reveal" id="service-real-estate">
+                    <div class="service-icon"><i class="fas fa-building-circle-check"></i></div>
+                    <h3 data-i18n="svc_re_title">Real Estate Investment</h3>
+                    <p data-i18n="svc_re_desc">Expert guidance and curated opportunities in high-growth residential and commercial real estate projects.</p>
+                    <a href="#contact" class="service-link" data-i18n="svc_learn">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHY CHOOSE US ===== -->
+    <section class="why-us" id="why-us">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag" data-i18n="why_tag">Why Dhariwal Investments</span>
+                <h2 class="section-title" data-i18n="why_title">Built on <span class="gradient-text">Trust & Expertise</span></h2>
+                <p class="section-desc" data-i18n="why_desc">We bring decades of experience, certified expertise, and a client-first approach to every relationship.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card reveal" id="why-experienced-advisor">
+                    <div class="why-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3 data-i18n="why1_title">Experienced financial advisor</h3>
+                    <p data-i18n="why1_desc">Decades of expertise in navigating complex financial markets with a proven track record of success.</p>
+                </div>
+                <div class="why-card reveal" id="why-personalized-planning">
+                    <div class="why-icon"><i class="fas fa-sliders-h"></i></div>
+                    <h3 data-i18n="why2_title">Personalized financial planning</h3>
+                    <p data-i18n="why2_desc">Tailored strategies designed around your unique life goals, risk appetite, and future aspirations.</p>
+                </div>
+                <div class="why-card reveal" id="why-transparent-guidance">
+                    <div class="why-icon"><i class="fas fa-gem"></i></div>
+                    <h3 data-i18n="why3_title">Transparent guidance</h3>
+                    <p data-i18n="why3_desc">Clear, honest advice with no hidden agendas, ensuring you make informed decisions with absolute confidence.</p>
+                </div>
+                <div class="why-card reveal" id="why-longterm-relationships">
+                    <div class="why-icon"><i class="fas fa-handshake"></i></div>
+                    <h3 data-i18n="why4_title">Long-term client relationships</h3>
+                    <p data-i18n="why4_desc">We grow with you, providing consistent support and evolving plans for every stage of your financial journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag" data-i18n="test_tag">Client Stories</span>
+                <h2 class="section-title" data-i18n="test_title">Trusted by <span class="gradient-text">Thousands</span></h2>
+                <p class="section-desc" data-i18n="test_desc">Hear from clients who transformed their financial future with Dhariwal Investments.</p>
+            </div>
+            <div class="testimonials-wrapper reveal">
+                <!-- Carousel Side -->
+                <div class="testimonial-carousel-side">
+                    <div class="testimonial-carousel" id="testimonial-carousel">
+                        <div class="testimonial-track" id="testimonial-track">
+                            <div class="testimonial-card">
+                                <div class="testimonial-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="testimonial-text">"Dhariwal Investments completely transformed our family's financial planning. Their SIP recommendations have given us consistent 18% returns over 5 years. Truly trustworthy advisors!"</p>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar"><i class="fas fa-user"></i></div>
+                                    <div>
+                                        <div class="author-name">Rajesh Sharma</div>
+                                        <div class="author-role">Business Owner, Jaipur</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="testimonial-card">
+                                <div class="testimonial-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="testimonial-text">"I was confused about life insurance options until I met the team at Dhariwal Investments. They explained everything clearly and helped me choose the perfect policy for my family."</p>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar"><i class="fas fa-user"></i></div>
+                                    <div>
+                                        <div class="author-name">Priya Mehta</div>
+                                        <div class="author-role">Software Engineer, Pune</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="testimonial-card">
+                                <div class="testimonial-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="testimonial-text">"Their retirement planning service gave me peace of mind. At 45, I now have a clear roadmap to retire comfortably by 58. Professional, transparent, and genuinely caring."</p>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar"><i class="fas fa-user"></i></div>
+                                    <div>
+                                        <div class="author-name">Anil Gupta</div>
+                                        <div class="author-role">Senior Manager, Delhi</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn" id="carousel-prev" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
+                            <div class="carousel-dots" id="carousel-dots"></div>
+                            <button class="carousel-btn" id="carousel-next" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Side -->
+                <div class="review-form-side">
+                    <div class="mini-review-box">
+                        <h3 data-i18n="review_title">Share Your Experience</h3>
+                        <form id="review-form" class="review-form">
+                            <div class="form-group">
+                                <input type="text" id="review-name" placeholder="Full Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="review-city" placeholder="City" required>
+                            </div>
+                            <div class="rating-group">
+                                <div class="star-rating" id="star-rating">
+                                    <i class="far fa-star" data-value="1"></i>
+                                    <i class="far fa-star" data-value="2"></i>
+                                    <i class="far fa-star" data-value="3"></i>
+                                    <i class="far fa-star" data-value="4"></i>
+                                    <i class="far fa-star" data-value="5"></i>
+                                </div>
+                                <input type="hidden" id="review-rating" value="0">
+                            </div>
+                            <div class="form-group">
+                                <textarea id="review-text" rows="3" placeholder="Your review..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full" data-i18n="review_submit">Submit Review</button>
+                            <div id="review-success" class="review-success-msg" style="display: none;">
+                                <i class="fas fa-check-circle"></i> Added!
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>        </div>
+    </section>
+
+    <!-- ===== START YOUR CAREER (LIC AGENTS) ===== -->
+    <section class="section-career" id="careers">
+        <div class="container">
+            <div class="career-split">
+                <!-- Left: Content -->
+                <div class="career-left reveal">
+                    <span class="section-tag" data-i18n="cr_tag">Start Your Career</span>
+                    <h2 class="section-title" data-i18n="cr_title">Start Your Career in Finance with <span class="gradient-text">Zero Experience</span></h2>
+                    <p class="career-desc" data-i18n="cr_desc">Join Dhariwal Investments as an LIC Insurance Advisor. We provide full training, support, and the platform you need to build a flexible, high-income career in the financial sector.</p>
+                    
+                    <ul class="career-benefits">
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="cr_b1">No prior experience required</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="cr_b2">Complete training provided from basics</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="cr_b3">Flexible working (part-time / full-time)</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="cr_b4">Opportunity to earn a handsome income</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="cr_b5">Work with a trusted financial advisory firm</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="cr_b6">Long-term career growth in finance</span></li>
+                    </ul>
+
+                    <div class="career-ctas">
+                        <a href="#contact" class="btn btn-primary" data-i18n="cr_btn1">Apply Now</a>
+                        <a href="https://wa.me/919828051556?text=Hello,%20I%20am%20interested%20in%20joining%20as%20an%20LIC%20Agent.%20Please%20share%20more%20details." class="btn btn-outline" target="_blank" data-i18n="cr_btn2"><i class="fab fa-whatsapp"></i> Talk on WhatsApp</a>
+                    </div>
+                </div>
+
+                <!-- Right: Visual -->
+                <div class="career-right reveal" id="career-image-box">
+                    <div class="career-image-wrapper">
+                        <img src="assets/career-growth.png" alt="Career Growth in Finance" class="career-img">
+                        <div class="career-floating-badge badge-1">
+                            <i class="fas fa-chart-line"></i>
+                            <span data-i18n="cr_badge1">High Income Potential</span>
+                        </div>
+                        <div class="career-floating-badge badge-2">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span data-i18n="cr_badge2">Full Training</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LEAD CAPTURE / CTA ===== -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info reveal">
+                    <span class="section-tag" data-i18n="contact_tag">Get Started</span>
+                    <h2 class="section-title" data-i18n="contact_title">Get Free Insurance & <span class="gradient-text">Investment Consultation</span></h2>
+                    <p data-i18n="contact_desc">Fill in your details and our expert advisor will reach out within 24 hours to discuss your financial goals — completely free, no obligations.</p>
+                    <div class="contact-features">
+                        <div class="contact-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span data-i18n="contact_f1">100% Free Consultation</span>
+                        </div>
+                        <div class="contact-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span data-i18n="contact_f2">No Obligations or Hidden Fees</span>
+                        </div>
+                        <div class="contact-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span data-i18n="contact_f3">Personalized Financial Plan</span>
+                        </div>
+                        <div class="contact-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span data-i18n="contact_f4">Expert Guidance from Day One</span>
+                        </div>
+                    </div>
+                    <div class="contact-direct">
+                        <div class="contact-direct-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 98280 51556</span>
+                        </div>
+                        <div class="contact-direct-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>dhariwal4902@gmail.com</span>
+                        </div>
+                        <div class="contact-direct-item">
+                            <i class="fas fa-location-dot"></i>
+                            <span>Opp. St Anselms School, Ajmer, Rajasthan</span>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form reveal" id="contact-form">
+                    <div class="form-group">
+                        <label for="form-name" data-i18n="form_name">Full Name</label>
+                        <input type="text" id="form-name" name="name" data-i18n-placeholder="form_name_ph" placeholder="e.g. Rahul Sharma" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-phone" data-i18n="form_phone">Phone Number</label>
+                        <input type="tel" id="form-phone" name="phone" data-i18n-placeholder="form_phone_ph" placeholder="+91 98280 51556" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-email" data-i18n="form_email">Email Address</label>
+                        <input type="email" id="form-email" name="email" data-i18n-placeholder="form_email_ph" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-service" data-i18n="form_service">Interested In</label>
+                        <select id="form-service" name="service" required>
+                            <option value="" disabled selected data-i18n="form_select">Select a service</option>
+                            <option value="mutual-funds" data-i18n="form_opt_mf">Mutual Funds</option>
+                            <option value="insurance" data-i18n="form_opt_ins">Life & Health Insurance</option>
+                            <option value="sip" data-i18n="form_opt_sip">SIP Planning</option>
+                            <option value="vehicle-insurance" data-i18n="form_opt_veh">Vehicle Insurance</option>
+                            <option value="retirement" data-i18n="form_opt_ret">Retirement Planning</option>
+                            <option value="real-estate" data-i18n="form_opt_re">Real Estate Investment</option>
+                            <option value="other" data-i18n="form_opt_other">Other / General Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-message" data-i18n="form_message">Message</label>
+                        <textarea id="form-message" name="message" rows="4" data-i18n-placeholder="form_message_ph" placeholder="Tell us more about your requirements..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" id="form-submit" data-i18n="form_submit">
+                        <i class="fas fa-paper-plane"></i> Request Consultation
+                    </button>
+                    <p class="form-note" data-i18n="form_note">We respect your privacy. Your information is 100% secure.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo footer-logo">
+                        <img src="assets/logo-icon.png?v=3" alt="Dhariwal Investments Logo" class="logo-icon">
+                        <span class="logo-text">Dhariwal <span class="logo-highlight">Investments</span></span>
+                    </a>
+                    <p data-i18n="footer_brand_desc">Your trusted partner for financial advisory and insurance solutions. Building wealth, securing futures since 2000.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links-col">
+                    <h4 data-i18n="footer_quick">Quick Links</h4>
+                    <ul>
+                        <li><a href="#services" data-i18n="footer_services">Our Services</a></li>
+                        <li><a href="#why-us" data-i18n="footer_whyus">Why Choose Us</a></li>
+                        <li><a href="#testimonials" data-i18n="footer_testimonials">Testimonials</a></li>
+                        <li><a href="#contact" data-i18n="footer_contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h4 data-i18n="footer_svc">Services</h4>
+                    <ul>
+                        <li><a href="#contact" data-i18n="footer_mf">Mutual Funds</a></li>
+                        <li><a href="#contact" data-i18n="footer_ins">Insurance Plans</a></li>
+                        <li><a href="#contact" data-i18n="footer_sip">SIP Planning</a></li>
+                        <li><a href="#contact" data-i18n="footer_veh">Vehicle Insurance</a></li>
+                        <li><a href="#contact" data-i18n="footer_ret">Retirement Planning</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h4 data-i18n="footer_contact_h">Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +91 98280 51556</li>
+                        <li><i class="fas fa-envelope"></i> dhariwal4902@gmail.com</li>
+                        <li><i class="fas fa-location-dot"></i> Ajmer, Rajasthan</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="footer_copy">&copy; 2026 Dhariwal Investments. All rights reserved.</p>
+                <p class="footer-disclaimer" data-i18n="footer_disclaimer">Disclaimer: Mutual fund investments are subject to market risks. Please read all scheme-related documents carefully before investing. Insurance is a subject matter of solicitation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== FLOATING LANGUAGE TOGGLE ===== -->
+    <button class="lang-toggle-float" id="lang-toggle" aria-label="Switch Language">
+        <i class="fas fa-language"></i>
+        <span id="lang-toggle-label">हिंदी</span>
+    </button>
+
+    <!-- ===== FLOATING WHATSAPP ===== -->
+    <a href="https://wa.me/919828051556" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="script.js?v=6.0"></script>
+</body>
+</html>
