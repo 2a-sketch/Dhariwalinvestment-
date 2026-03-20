@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             nav_services: 'Services', nav_whyus: 'Why Us', nav_testimonials: 'Testimonials', nav_careers: 'Start Your Career',
             nav_contact: 'Contact', nav_cta: 'Book Free Consultation',
             // Hero
-            hero_badge: '<i class="fas fa-shield-halved"></i> SEBI Registered &bull; IRDA Certified',
+            hero_badge: '<i class="fas fa-shield-halved"></i> SEBI Registered &bull; IRDAI Certified',
             hero_title: 'Secure Your Future with<br><span class="gradient-text">Trusted</span> Insurance &amp; <span class="gradient-text">Investment</span> Solutions',
             hero_subtitle: '25+ Years of Experience &nbsp;|&nbsp; 6000+ Happy Clients',
             hero_trust1: '25+ Years Experience', hero_trust2: '6000+ Clients Served', hero_trust3: 'Trusted Financial Advisor',
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ach_title: 'Proven <span class="gradient-text">Achievements</span>',
             ach_desc: 'Decades of trust, thousands of satisfied clients, and a legacy of financial excellence.',
             ach_years: 'Years Experience', ach_clients: 'Happy Clients', ach_policies: 'Insurance Policies', ach_agents: 'Agents',
-            ach_trust_banner: 'Trusted Financial Advisor — SEBI Registered & IRDA Certified',
+            ach_trust_banner: 'Trusted Financial Advisor — SEBI Registered & IRDAI Certified',
             // Services
             svc_tag: 'What We Offer', svc_title: 'Comprehensive Financial <span class="gradient-text">Solutions</span>',
             svc_desc: 'From wealth creation to protection — we cover every aspect of your financial journey.',
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
             nav_services: 'सेवाएँ', nav_whyus: 'हम क्यों', nav_testimonials: 'ग्राहक अनुभव', nav_careers: 'अपना करियर शुरू करें',
             nav_contact: 'संपर्क', nav_cta: 'मुफ्त परामर्श बुक करें',
             // Hero
-            hero_badge: '<i class="fas fa-shield-halved"></i> SEBI पंजीकृत &bull; IRDA प्रमाणित',
+            hero_badge: '<i class="fas fa-shield-halved"></i> SEBI पंजीकृत &bull; IRDAI प्रमाणित',
             hero_title: 'अपने भविष्य को सुरक्षित करें<br><span class="gradient-text">विश्वसनीय</span> बीमा और <span class="gradient-text">निवेश</span> समाधान',
             hero_subtitle: '25+ वर्षों का अनुभव &nbsp;|&nbsp; 6000+ संतुष्ट ग्राहक',
             hero_trust1: '25+ वर्षों का अनुभव', hero_trust2: '6000+ ग्राहक सेवित', hero_trust3: 'विश्वसनीय वित्तीय सलाहकार',
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ach_title: 'सिद्ध <span class="gradient-text">उपलब्धियाँ</span>',
             ach_desc: 'दशकों का विश्वास, हज़ारों संतुष्ट ग्राहक, और वित्तीय उत्कृष्टता की विरासत।',
             ach_years: 'वर्षों का अनुभव', ach_clients: 'खुश ग्राहक', ach_policies: 'बीमा पॉलिसियाँ', ach_agents: 'एजेंट',
-            ach_trust_banner: 'विश्वसनीय वित्तीय सलाहकार — SEBI पंजीकृत और IRDA प्रमाणित',
+            ach_trust_banner: 'विश्वसनीय वित्तीय सलाहकार — SEBI पंजीकृत और IRDAI प्रमाणित',
             // Services
             svc_tag: 'हम क्या प्रदान करते हैं', svc_title: 'व्यापक वित्तीय <span class="gradient-text">समाधान</span>',
             svc_desc: 'धन निर्माण से सुरक्षा तक — हम आपकी वित्तीय यात्रा के हर पहलू को कवर करते हैं।',
@@ -768,7 +768,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (nameOk && phoneOk && emailOk && serviceOk && messageOk) {
                 const rawMessage = `*New Consultation Request*\n\n*Name:* ${fields.name.value.trim()}\n*Phone:* ${fields.phone.value.trim()}\n*Email:* ${fields.email.value.trim()}\n*Interested In:* ${fields.service.options[fields.service.selectedIndex].text}\n\n*Message:*\n${fields.message.value.trim()}`;
-                const waUrl = `https://wa.me/919828051556?text=${encodeURIComponent(rawMessage)}`;
+                const waUrl = `https://api.whatsapp.com/send?phone=919828051556&text=${encodeURIComponent(rawMessage)}`;
 
                 // Try window.open first (works in direct event handlers on both desktop & mobile)
                 const newWin = window.open(waUrl, '_blank');
@@ -787,6 +787,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     `;
                 }, 500);
+            } else {
+                // Form validation failed. Alert user so they don't think standard button is broken.
+                alert("Please fill out all fields correctly. Note: Your phone number must be valid and the message must be at least 10 characters long!");
             }
         });
     }
